@@ -19,7 +19,7 @@ app.use(express.json());
 app.post("/submit", (req, res) => {
   const { firstName, lastName, email, date } = req.body;
   if (!firstName || !lastName || !email || !date) {
-    return res.status(400).json("Please fill all required fields");
+    return res.status(400).json({ message: "Please fill all required fields" });
   }
   console.log(req.body);
 
@@ -35,8 +35,7 @@ app.post("/submit", (req, res) => {
       res.json({ body: event, message: "event saved successfully" });
     })
     .catch((err) => {
-      res.status(400).json("Unable to save event");
-      console.log(err);
+      res.status(400).json({ message: "Unable to save event" });
     });
 });
 
